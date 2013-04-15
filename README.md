@@ -12,7 +12,7 @@ The following algorithms have been implemented:
   all single-digit substitutions (x to y) and adjacent digit transpositions (xy
   to yx). In addition, the Verhoeff check digit can detect most twin errors (xx
   to yy), jump twin errors (xyx to zyz), jump transpositions (xyz to zyx), and
-  phonetic errors (\sQuote{sixty} to \sQuote{sixteen}).
+  phonetic errors ('sixty' to 'sixteen').
 
 References
 ----------
