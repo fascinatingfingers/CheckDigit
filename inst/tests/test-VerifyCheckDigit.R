@@ -4,9 +4,7 @@
 ###
 
 SingleDigitSubstitutions <- function(x) {
-    stopifnot(length(x) == 1)
-    stopifnot(is.character(x))
-    stopifnot(!grepl('[^0-9]', x))
+    stopifnot(is.character(x) & length(x) == 1 & all(grepl('^\\d*$', x)))
 
     y <- c()
 
@@ -26,9 +24,7 @@ SingleDigitSubstitutions <- function(x) {
 }
 
 SingleAdjacentTranspositions <- function(x) {
-    stopifnot(length(x) == 1)
-    stopifnot(is.character(x))
-    stopifnot(!grepl('[^0-9]', x))
+    stopifnot(is.character(x) & length(x) == 1 & all(grepl('^\\d*$', x)))
 
     y <- c()
 
@@ -57,8 +53,11 @@ context('Basic functionality of VerifyCheckDigit')
 
 test_that('VerifyCheckDigit calls the appropriate function or throws errors', {
     expect_that(VerifyCheckDigit(), throws_error())
-    expect_that(VerifyCheckDigit(12340, 'foo'), throws_error('Method "foo" has not been implemented.'))
-    expect_that(VerifyCheckDigit(12340, 'Verhoeff'), is_equivalent_to(TRUE))
+    expect_that(VerifyCheckDigit('12340'), throws_error())
+    expect_that(VerifyCheckDigit(method='Verhoeff'), throws_error())
+    expect_that(VerifyCheckDigit(12340, 'Verhoeff'), throws_error())
+    expect_that(VerifyCheckDigit('12340', 'foo'), throws_error())
+    expect_that(VerifyCheckDigit('12340', 'Verhoeff'), is_equivalent_to(TRUE))
 })
 
 
@@ -69,7 +68,7 @@ test_that('VerifyCheckDigit calls the appropriate function or throws errors', {
 
 context('Verhoeff algorithm')
 
-test_that('VerifyCheckDigit.Verhoeff throws appropriate errors and warnings', {
+test_that('VerifyCheckDigit.Verhoeff gives a warning when stripping non-digit characters', {
     expect_that(VerifyCheckDigit('867-5309', 'Verhoeff'), gives_warning('Non-digit characters are disregarded in check digit calculation'))
 })
 
@@ -77,20 +76,14 @@ test_that('VerifyCheckDigit.Verhoeff returns correct responses', {
 
     ## Missing values should return FALSE
     expect_that(VerifyCheckDigit('', 'Verhoeff'), is_equivalent_to(FALSE))
-    expect_that(VerifyCheckDigit(NA, 'Verhoeff'), is_equivalent_to(FALSE))
-    expect_that(VerifyCheckDigit(NaN, 'Verhoeff'), is_equivalent_to(FALSE))
+    expect_that(VerifyCheckDigit(as.character(NA), 'Verhoeff'), is_equivalent_to(FALSE))
+    expect_that(suppressWarnings(VerifyCheckDigit(as.character(NaN), 'Verhoeff')), is_equivalent_to(FALSE))
 
     ## Character arguments
     expect_that(VerifyCheckDigit('15', 'Verhoeff'), is_equivalent_to(TRUE))
     expect_that(VerifyCheckDigit('12340', 'Verhoeff'), is_equivalent_to(TRUE))
     expect_that(VerifyCheckDigit('86753098', 'Verhoeff'), is_equivalent_to(TRUE))
     expect_that(VerifyCheckDigit('92233720368547758088', 'Verhoeff'), is_equivalent_to(TRUE))
-
-    ## Numeric arguments
-    expect_that(VerifyCheckDigit(15, 'Verhoeff'), is_equivalent_to(TRUE))
-    expect_that(VerifyCheckDigit(12340, 'Verhoeff'), is_equivalent_to(TRUE))
-    expect_that(VerifyCheckDigit(86753098, 'Verhoeff'), is_equivalent_to(TRUE))
-    expect_that(VerifyCheckDigit('92233720368547758088', 'Verhoeff'), is_equivalent_to(TRUE)) ## FIXME character conversion has problems
 
     ## Vectorized arguments
     expect_that(
