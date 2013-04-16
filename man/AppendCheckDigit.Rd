@@ -22,7 +22,7 @@
 }
 
 \seealso{
-  \code{\link{AppendCheckDigit}},
+  \code{\link{VerifyCheckDigit}},
   \code{\link{CheckDigit-package}}
 }
 
