@@ -1,7 +1,7 @@
 Package: CheckDigit
 Type: Package
 Title: Calculate and verify check digits
-Version: 0.1
+Version: 0.1-0
 Date: 2013-04-14
 Author: Justin Brantley <brantley@uw.edu>
 Maintainer: Justin Brantley <brantley@uw.edu>
@@ -9,3 +9,4 @@ Suggests: testthat
 Description: A set of functions to calculate check digits according to various
   algorithms and to verify whether a string ends in a valid check digit
 License: GPL-3
+URL: https://github.com/fascinatingfingers/CheckDigit
