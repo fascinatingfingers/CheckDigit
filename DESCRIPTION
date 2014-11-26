@@ -1,7 +1,7 @@
 Package: CheckDigit
 Type: Package
 Title: Calculate and verify check digits
-Version: 0.1-1
+Version: 0.1-2
 Date: 2013-04-14
 Author: Justin Brantley <brantley@uw.edu>
 Maintainer: Justin Brantley <brantley@uw.edu>
