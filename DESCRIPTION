@@ -3,11 +3,14 @@ Package: CheckDigit
 Title: Calculate and Verify Check Digits
 Version: 0.1-3
 Author: person('Justin', 'Brantley', email = 'fascinatingfingers@icloud.com', role = c('aut', 'cre'))
-Description: Functions to calculate check digits according to various algorithms
-  and to verify whether a string ends in a valid check digit
+Description: The CheckDigit package provides a set of functions to calculate check digits
+  according to various algorithms and to verify whether a value ends in a valid
+  check digit.
 License: GPL-3
 URL: https://gitlab.com/fascinatingfingers/checkdigit
 BugReports: https://gitlab.com/fascinatingfingers/checkdigit/issues
 Suggests: 
     testthat
 LazyData: TRUE
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1

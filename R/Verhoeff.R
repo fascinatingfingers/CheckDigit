@@ -1,4 +1,21 @@
 
+#' Verhoeff algorithm implementation
+#'
+#' The Verhoeff algorithm is appropriate for numerical data and detects all
+#' single-digit substitutions (x to y) and adjacent digit transpositions (xy to
+#' yx). In addition, the Verhoeff check digit can detect most twin errors (xx to
+#' yy), jump twin errors (xyx to zyz), jump transpositions (xyz to zyx), and
+#' phonetic errors ('sixty' to 'sixteen').
+#'
+#' @param x character vector of values
+#'
+#' @references Verhoeff, J. "Error Detecting Decimal Codes", Mathematical Centre
+#'   Tract 29, The Mathematical Centre, Amsterdam, 1969.
+#'
+#' @name verhoeff
+NULL
+
+#' @rdname verhoeff
 AppendCheckDigit.Verhoeff <- function(x) {
 
     x[is.na(x)] <- NA
@@ -62,6 +79,7 @@ AppendCheckDigit.Verhoeff <- function(x) {
     return(y)
 }
 
+#' @rdname verhoeff
 VerifyCheckDigit.Verhoeff <- function(x) {
 
     x[is.na(x)] <- NA
