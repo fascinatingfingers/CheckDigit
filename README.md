@@ -2,6 +2,11 @@
 CheckDigit
 ==========
 
+[![pipeline status](https://gitlab.com/fascinatingfingers/checkdigit/badges/master/pipeline.svg)](https://gitlab.com/fascinatingfingers/checkdigit/pipelines)
+[![coverage report](https://gitlab.com/fascinatingfingers/checkdigit/badges/master/coverage.svg)](https://gitlab.com/fascinatingfingers/checkdigit/commits/master)
+
+---
+
 The CheckDigit package provides a set of functions to calculate check digits
 according to various algorithms and to verify whether a value ends in a valid
 check digit.
