@@ -1,3 +1,4 @@
 library(testthat)
 library(CheckDigit)
-test_package('CheckDigit')
+
+# test_check("CheckDigit")
